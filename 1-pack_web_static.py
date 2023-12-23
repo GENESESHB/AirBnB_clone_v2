@@ -6,6 +6,7 @@
 
 from datetime import datetime
 from fabric.api import local
+from fabric import task
 
 
 def do_pack():
