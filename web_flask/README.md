@@ -75,6 +75,10 @@ A recommended YouTube playlist titled "Python: Flask the web framework" is sugge
 - The application should listen on `0.0.0.0`, port `5000`.
 - Define a route `/` that displays "Hello HBNB!"
 - Use the option `strict_slashes=False` in your route definition.
+```c
+guillaume@ubuntu:~$ curl 0.0.0.0:5000 ; echo "" | cat -e
+Hello HBNB!$
+guillaume@ubuntu:~$
 
 ``
 
@@ -87,14 +91,15 @@ guillaume@ubuntu:~$ curl 0.0.0.0:5000 ; echo "" | cat -e
 Hello HBNB!$
 guillaume@ubuntu:~$ 
 
-``
+```
 
 ### 1. HBNB
 - Write a script that starts a Flask web application.
 - The application should listen on `0.0.0.0`, port `5000`.
 - Define routes `/` and `/hbnb` that display "Hello HBNB!" and "HBNB" respectively.
 - Use the option `strict_slashes=False` in your route definition.
-``
+
+```c
 guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.1-hbnb_route
 * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ....
@@ -103,16 +108,17 @@ In another tab:
 guillaume@ubuntu:~$ curl 0.0.0.0:5000/hbnb ; echo "" | cat -e
 HBNB$
 guillaume@ubuntu:~$ 
-``
+```
 
 ### 2. C is fun!
 - Write a script that starts a Flask web application.
 - The application should listen on `0.0.0.0`, port `5000`.
 - Define routes `/`, `/hbnb`, and `/c/<text>` that display "Hello HBNB!", "HBNB", "C " followed by the value of the text variable, replacing underscores with spaces.
 - Use the option `strict_slashes=False` in your route definition.
-``
+
+```c
 guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.2-c_route
-* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ....
 In another tab:
 
@@ -126,7 +132,7 @@ guillaume@ubuntu:~$ curl 0.0.0.0:5000/c
 <h1>Not Found</h1>
 <p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
 guillaume@ubuntu:~$ 
-``
+```
 
 ### 3. Python is cool!
 - Write a script that starts a Flask web application.
@@ -135,9 +141,9 @@ guillaume@ubuntu:~$
 - The default value of text for `/python` is "is cool".
 - Use the option `strict_slashes=False` in your route definition.
 
-``
+```c
 guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.3-python_route
-* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ....
 In another tab:
 
@@ -148,7 +154,7 @@ Python is cool$
 guillaume@ubuntu:~$ curl -Ls 0.0.0.0:5000/python/ ; echo "" | cat -e
 Python is cool$
 guillaume@ubuntu:~$
-``
+```
 
 ## GitHub Repository
 - [AirBnB_clone_v2](https://github.com/username/AirBnB_clone_v2)
