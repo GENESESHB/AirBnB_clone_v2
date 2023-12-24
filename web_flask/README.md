@@ -75,7 +75,7 @@ A recommended YouTube playlist titled "Python: Flask the web framework" is sugge
 - The application should listen on `0.0.0.0`, port `5000`.
 - Define a route `/` that displays "Hello HBNB!"
 - Use the option `strict_slashes=False` in your route definition.
-```c
+```python
 guillaume@ubuntu:~$ curl 0.0.0.0:5000 ; echo "" | cat -e
 Hello HBNB!$
 guillaume@ubuntu:~$
@@ -99,7 +99,7 @@ guillaume@ubuntu:~$
 - Define routes `/` and `/hbnb` that display "Hello HBNB!" and "HBNB" respectively.
 - Use the option `strict_slashes=False` in your route definition.
 
-```c
+```python
 guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.1-hbnb_route
 * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ....
@@ -116,7 +116,7 @@ guillaume@ubuntu:~$
 - Define routes `/`, `/hbnb`, and `/c/<text>` that display "Hello HBNB!", "HBNB", "C " followed by the value of the text variable, replacing underscores with spaces.
 - Use the option `strict_slashes=False` in your route definition.
 
-```c
+```python
 guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.2-c_route
 Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ....
@@ -141,7 +141,7 @@ guillaume@ubuntu:~$
 - The default value of text for `/python` is "is cool".
 - Use the option `strict_slashes=False` in your route definition.
 
-```c
+```python
 guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.3-python_route
 Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ....
@@ -174,7 +174,7 @@ The application will be accessible at http://0.0.0.0:5000/.
 - `/python/(<text>)`: Display "Python " followed by the value of the text variable (replace underscore _ symbols with a space)
 - `/number/<n>`: Display "n is a number" only if n is an integer
 
-```c
+```python
 guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.4-number_route
 * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ....
@@ -213,7 +213,7 @@ The application will be accessible at http://0.0.0.0:5000/.
 - `/number/<n>`: Display "n is a number" only if n is an integer
 - `/number_template/<n>`: Display an HTML page only if n is an integer with the H1 tag "Number: n" inside the BODY tag
 
-```c
+```python
 guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.5-number_template
 * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ....
@@ -260,7 +260,7 @@ The application will be accessible at http://0.0.0.0:5000/.
 - `/number_template/<n>`: Display an HTML page only if n is an integer with the H1 tag "Number: n" inside the BODY tag
 - `/number_odd_or_even/<n>`: Display an HTML page only if n is an integer with the H1 tag "Number: n is even|odd" inside the BODY tag
 
-```c
+```python
 guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.6-number_odd_or_even
 * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ....
