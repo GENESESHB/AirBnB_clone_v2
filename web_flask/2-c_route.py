@@ -26,7 +26,7 @@ def hbnb():
 @app.route('/c/<text>', strict_slashes=False)
 def testpost(text):
     """
-    remplace text with string 
+    remplace text with string
     """
     text = text.replace('_', ' ')
     return "C " + str(text)

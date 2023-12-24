@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/', strict_slashes=False)
 def hello():
     """ it displays'Hello HBNB!'"""
-    
+
     return "RANING WARRIOR HASSAN BOUDRAA IN THE UNIVERSITY !"
 
 
