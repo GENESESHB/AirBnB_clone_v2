@@ -9,7 +9,7 @@ app = Flask(__name__)
 def hello():
     """ it displays'Hello HBNB!'"""
 
-    return "RANING WARRIOR HASSAN BOUDRAA IN THE UNIVERSITY !"
+    return "Hello HBNB!"
 
 
 if __name__ == "__main__":
