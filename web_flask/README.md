@@ -1,10 +1,5 @@
 <a name="top"></a>
-# Your README Title
-
-<!-- Content of your README -->
-Certainly! Here's a modified version of the information to resemble the structure you'd typically find in a README.md file on GitHub:
-
----
+![apage](https://s3.amazonaws.com/intranet-projects-files/concepts/74/hbnb_step3.png)
 
 # AirBnB Clone - Web Framework Project
 
@@ -416,7 +411,8 @@ This project focuses on developing a Flask web application for an AirBnB clone, 
 
 --- 
 
-Feel free to customize it further based on your preferences!
+
+
 
 [Return to Top](#top)
 
