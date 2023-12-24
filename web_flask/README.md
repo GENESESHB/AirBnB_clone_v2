@@ -154,7 +154,151 @@ Python is cool$
 guillaume@ubuntu:~$ curl -Ls 0.0.0.0:5000/python/ ; echo "" | cat -e
 Python is cool$
 guillaume@ubuntu:~$
+
 ```
+
+### 4. Is it a number?
+
+Run the script `4-number_route.py` to start the Flask web application:
+
+```bash
+python3 -m web_flask.4-number_route
+```
+
+The application will be accessible at http://0.0.0.0:5000/.
+
+#### Routes:
+- `/`: Display "Hello HBNB!"
+- `/hbnb`: Display "HBNB"
+- `/c/<text>`: Display "C " followed by the value of the text variable (replace underscore _ symbols with a space)
+- `/python/(<text>)`: Display "Python " followed by the value of the text variable (replace underscore _ symbols with a space)
+- `/number/<n>`: Display "n is a number" only if n is an integer
+
+```c
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.4-number_route
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number/89 ; echo "" | cat -e
+89 is a number$
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number/8.9 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number/python 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ 
+```
+
+### 5. Number template
+
+Run the script `5-number_template.py` to start the Flask web application:
+
+```bash
+python3 -m web_flask.5-number_template
+```
+
+The application will be accessible at http://0.0.0.0:5000/.
+
+#### Routes:
+- `/`: Display "Hello HBNB!"
+- `/hbnb`: Display "HBNB"
+- `/c/<text>`: Display "C " followed by the value of the text variable (replace underscore _ symbols with a space)
+- `/python/(<text>)`: Display "Python " followed by the value of the text variable (replace underscore _ symbols with a space)
+- `/number/<n>`: Display "n is a number" only if n is an integer
+- `/number_template/<n>`: Display an HTML page only if n is an integer with the H1 tag "Number: n" inside the BODY tag
+
+```c
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.5-number_template
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_template/89 ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>Number: 89</H1>
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_template/8.9 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_template/python 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ 
+```
+### 6. Odd or even?
+
+Run the script `6-number_odd_or_even.py` to start the Flask web application:
+
+```bash
+python3 -m web_flask.6-number_odd_or_even
+```
+
+The application will be accessible at http://0.0.0.0:5000/.
+
+#### Routes:
+- `/`: Display "Hello HBNB!"
+- `/hbnb`: Display "HBNB"
+- `/c/<text>`: Display "C " followed by the value of the text variable (replace underscore _ symbols with a space)
+- `/python/(<text>)`: Display "Python " followed by the value of the text variable (replace underscore _ symbols with a space)
+- `/number/<n>`: Display "n is a number" only if n is an integer
+- `/number_template/<n>`: Display an HTML page only if n is an integer with the H1 tag "Number: n" inside the BODY tag
+- `/number_odd_or_even/<n>`: Display an HTML page only if n is an integer with the H1 tag "Number: n is even|odd" inside the BODY tag
+
+```c
+guillaume@ubuntu:~/AirBnB_v2$ python3 -m web_flask.6-number_odd_or_even
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_odd_or_even/89 ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>Number: 89 is odd</H1>
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_odd_or_even/32 ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>Number: 32 is even</H1>
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/number_odd_or_even/python 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+guillaume@ubuntu:~$ 
+```
+## Contributors
+- [Your Name]
+- [Contributor 1]
+- [Contributor 2]
+
+Feel free to contribute to the project by creating pull requests or reporting issues.
 
 ## GitHub Repository
 - [AirBnB_clone_v2](https://github.com/username/AirBnB_clone_v2)
