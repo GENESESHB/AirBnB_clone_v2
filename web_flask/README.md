@@ -392,8 +392,281 @@ Find the city [City] (e3e36ded-fe56-44f5-bf08-8a27e2b30672) {'name': 'Napa', 'id
 Find the city [City] (12a58d70-e255-4c1e-8a68-7d5fb924d2d2) {'name': 'Sonoma', 'id': '12a58d70-e255-4c1e-8a68-7d5fb924d2d2', 'state_id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 511513), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 511432)} in the state [State] (5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45) {'name': 'California', 'id': '5b8f1d55-e49c-44dd-ba6f-a3cf8489ae45', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510038), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 509950)}
 Find the city [City] (a693bdb9-e0ca-4521-adfd-e1a93c093b4b) {'name': 'Page', 'id': 'a693bdb9-e0ca-4521-adfd-e1a93c093b4b', 'state_id': 'a5e5311a-3c19-4995-9485-32c74411b416', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 512073), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 511869)} in the state [State] (a5e5311a-3c19-4995-9485-32c74411b416) {'name': 'Arizona', 'id': 'a5e5311a-3c19-4995-9485-32c74411b416', 'updated_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510373), 'created_at': datetime.datetime(2017, 12, 11, 19, 27, 52, 510252)}
 guillaume@ubuntu:~/AirBnB_v2$ 
+
+
 ````
----
+
+# Flask Web Application for Listing States
+
+## Description
+This script sets up a Flask web application that displays a list of states from the storage engine (FileStorage or DBStorage).
+
+## Requirements
+- Your web application must be listening on 0.0.0.0, port 5000.
+- Use storage for fetching data from the storage engine (FileStorage or DBStorage). Import it using `from models import storage` and access data with `storage.all(...)`.
+- After each request, remove the current SQLAlchemy Session. Declare a method to handle `@app.teardown_appcontext` and call `storage.close()` in this method.
+
+## Routes
+- `/states_list`: Displays an HTML page.
+  - H1 tag: "States"
+  - UL tag: List of all State objects present in DBStorage, sorted by name (A->Z).
+  - LI tag: Description of one State: `<state.id>: <B><state.name></B>`
+  - Import the provided 7-dump to have some data.
+  - Use the option `strict_slashes=False` in your route definition.
+
+## Important Notes
+- Ensure you have a running and valid `setup_mysql_dev.sql` in your AirBnB_clone_v2 repository (Task).
+- Make sure all tables are created when you run the following command:
+  ```bash
+  echo "quit" | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+
+```python
+guillaume@ubuntu:~/AirBnB_v2$ curl -o 7-dump.sql "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/290/7-states_list.sql"
+guillaume@ubuntu:~/AirBnB_v2$ cat 7-dump.sql | mysql -uroot -p
+Enter password: 
+guillaume@ubuntu:~/AirBnB_v2$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db python3 -m web_flask.7-states_list
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/states_list ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+        <UL>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479545: <B>Alabama</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479546: <B>Arizona</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479547: <B>California</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479548: <B>Colorado</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479549: <B>Florida</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479550: <B>Georgia</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479551: <B>Hawaii</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479552: <B>Illinois</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479553: <B>Indiana</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479554: <B>Louisiana</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479555: <B>Minnesota</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479556: <B>Mississippi</B></LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479557: <B>Oregon</B></LI>
+
+        </UL>
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ 
+````
+
+-sk Web Application for Listing Cities by States
+
+## Description
+This script sets up a Flask web application that displays a list of states and their associated cities from the storage engine (FileStorage or DBStorage).
+
+## Requirements
+- Your web application must be listening on 0.0.0.0, port 5000.
+- Use storage for fetching data from the storage engine (FileStorage or DBStorage). Import it using `from models import storage` and access data with `storage.all(...)`.
+- To load all cities of a State:
+  - If your storage engine is DBStorage, use the `cities` relationship.
+  - Otherwise, use the public getter method `cities`.
+- After each request, remove the current SQLAlchemy Session. Declare a method to handle `@app.teardown_appcontext` and call `storage.close()` in this method.
+
+## Routes
+- `/cities_by_states`: Displays an HTML page.
+  - H1 tag: "States"
+  - UL tag: List of all State objects present in DBStorage, sorted by name (A->Z).
+    - LI tag: Description of one State: `<state.id>: <B><state.name></B>`
+      - UL tag: List of City objects linked to the State, sorted by name (A->Z).
+        - LI tag: Description of one City: `<city.id>: <B><city.name></B>`
+  - Import the provided 7-dump to have some data.
+  - Use the option `strict_slashes=False` in your route definition.
+
+## Important Notes
+- Ensure you have a running and valid `setup_mysql_dev.sql` in your AirBnB_clone_v2 repository (Task).
+- Make sure all tables are created when you run the following command:
+  ```bash
+  echo "quit" | HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+````python
+guillaume@ubuntu:~/AirBnB_v2$ curl -o 7-dump.sql "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/290/7-states_list.sql"
+guillaume@ubuntu:~/AirBnB_v2$ cat 7-dump.sql | mysql -uroot -p
+Enter password: 
+guillaume@ubuntu:~/AirBnB_v2$ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db python3 -m web_flask.8-cities_by_states
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+....
+In another tab:
+
+guillaume@ubuntu:~$ curl 0.0.0.0:5000/cities_by_states ; echo ""
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+        <UL>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479545: <B>Alabama</B>
+                <UL>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479545: <B>Akron</B></LI>
+
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479545: <B>Babbie</B></LI>
+
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479545: <B>Calera</B></LI>
+
+                        <LI>551a55f4-7d82-47d9-b54c-a76916479545: <B>Fairfield</B></LI>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479546: <B>Arizona</B>
+                <UL>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479546: <B>Douglas</B></LI>
+
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479546: <B>Kearny</B></LI>
+
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479546: <B>Tempe</B></LI>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479547: <B>California</B>
+                <UL>
+
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479547: <B>Fremont</B></LI>
+
+                        <LI>551a55f4-7d82-47d9-b54c-a76916479547: <B>Napa</B></LI>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479547: <B>San Francisco</B></LI>
+
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479547: <B>San Jose</B></LI>
+
+                        <LI>561a55f4-7d82-47d9-b54c-a76916479547: <B>Sonoma</B></LI>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479548: <B>Colorado</B>
+                <UL>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479548: <B>Denver</B></LI>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479549: <B>Florida</B>
+                <UL>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479549: <B>Miami</B></LI>
+
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479549: <B>Orlando</B></LI>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479550: <B>Georgia</B>
+                <UL>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479551: <B>Hawaii</B>
+                <UL>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479551: <B>Honolulu</B></LI>
+
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479551: <B>Kailua</B></LI>
+
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479551: <B>Pearl city</B></LI>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479552: <B>Illinois</B>
+                <UL>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479552: <B>Chicago</B></LI>
+
+                        <LI>561a55f4-7d82-47d9-b54c-a76916479552: <B>Joliet</B></LI>
+
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479552: <B>Naperville</B></LI>
+
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479552: <B>Peoria</B></LI>
+
+                        <LI>551a55f4-7d82-47d9-b54c-a76916479552: <B>Urbana</B></LI>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479553: <B>Indiana</B>
+                <UL>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479554: <B>Louisiana</B>
+                <UL>
+
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479554: <B>Baton rouge</B></LI>
+
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479554: <B>Lafayette</B></LI>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479554: <B>New Orleans</B></LI>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479555: <B>Minnesota</B>
+                <UL>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479555: <B>Saint Paul</B></LI>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479556: <B>Mississippi</B>
+                <UL>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479556: <B>Jackson</B></LI>
+
+                        <LI>541a55f4-7d82-47d9-b54c-a76916479556: <B>Meridian</B></LI>
+
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479556: <B>Tupelo</B></LI>
+
+                </UL>
+            </LI>
+
+            <LI>421a55f4-7d82-47d9-b54c-a76916479557: <B>Oregon</B>
+                <UL>
+
+                        <LI>531a55f4-7d82-47d9-b54c-a76916479557: <B>Eugene</B></LI>
+
+                        <LI>521a55f4-7d82-47d9-b54c-a76916479557: <B>Portland</B></LI>
+
+                </UL>
+            </LI>
+
+        </UL>
+    </BODY>
+</HTML>
+guillaume@ubuntu:~$ 
+````
+
+--
 ## Contributors
 - [Your Name]
 - [Contributor 1]
