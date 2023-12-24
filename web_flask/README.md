@@ -24,8 +24,10 @@
 This project involves creating an AirBnB clone using the Flask web framework in Python. The project is managed by Guillaume, the CTO at Holberton School, and is scheduled to start on December 21, 2023, at 4:00 AM, with a deadline of January 2, 2024, at 4:00 AM.
 
 ## Learning Objectives
+```bash
+![allbigthing](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*L_QoAG863l8QvqxpNyBiqw.gif)
 By the end of this project, you are expected to understand the following concepts:
-
+```
 ### General
 - What is a Web Framework?
 - How to build a web framework with Flask.

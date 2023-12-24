@@ -35,12 +35,12 @@ def testpost(text):
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def python_post(text ="is cool"):
+def python_post(text =" is cool"):
     """
     difine a function can remplace text with is cool
     """
     text = text.replace('_', ' ')
-    return "Python" + str(text)
+    return "Python " + str(text)
 
 
 if __name__ == "__main__":
