@@ -669,17 +669,9 @@ guillaume@ubuntu:~$
 ````
 
 --
-## Contributors
-- [Your Name]
-- [Contributor 1]
-- [Contributor 2]
-
-Feel free to contribute to the project by creating pull requests or reporting issues.
-
-## GitHub Repository
-- [AirBnB_clone_v2](https://github.com/username/AirBnB_clone_v2)
-- Directory: web_flask
-- Files: 0-hello_route.py, 1-hbnb_route.py, 2-c_route.py, 3-python_route.py, __init__.py
+#Author
+- Name: Hassan Boudraa
+- Email: hassan.hbmama@gmail.com
 
 ## Conclusion
 This project focuses on developing a Flask web application for an AirBnB clone, emphasizing independent problem-solving and adherence to coding standards. Each task contributes to the overall learning objectives, and successful completion requires a deep understanding of web frameworks, Flask, and related concepts.
