@@ -3,12 +3,13 @@
 starting flask web application
 """
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def hello():
+def hello_hbnb():
     """
     hello flask app with this prompt hellohbnb
     """
