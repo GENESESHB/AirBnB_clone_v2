@@ -3,12 +3,15 @@
 starting flask web application
 """
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 
 
 @app.route('/', strict_slashes=False)
-def hello():
+def hello_hbnb():
     """
     hello flask app with this prompt hellohbnb
     """
@@ -39,7 +42,32 @@ def python_post(text="is cool"):
     difine a function can remplace text with is cool
     """
     text = text.replace('_', ' ')
-    return 'Python {}'.format(text)
+    return "Python" + str(text)
+
+
+@app.route('/number/<int:n>', strict_slashes=False)
+def npost(n):
+    """
+    return number
+    """
+    return f"{n} is a number"
+
+
+@app.route("/number_template/<int:n>", strict_slashes=False)
+def number_template(n):
+    '''
+    display an html page onlY if <n> is an integer
+    '''
+    return render_template("5-number.html", n=n)
+
+
+@app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
+def number_odd_or_even(n):
+    """
+    display an HTML page only if <n> is an integer.
+    States whether <n> is odd or even in the body.
+    """
+    return render_template("6-number_odd_or_even.html", n=n)
 
 
 if __name__ == "__main__":

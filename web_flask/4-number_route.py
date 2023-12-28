@@ -32,10 +32,9 @@ def testpost(text):
     return "C " + str(text)
 
 
-
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def python_post(text ="is cool"):
+def python_post(text="is cool"):
     """
     difine a function can remplace text with is cool
     """

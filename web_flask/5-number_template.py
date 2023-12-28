@@ -3,12 +3,13 @@
 starting flask web application
 """
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def hello():
+def hello_hbnb():
     """
     hello flask app with this prompt hellohbnb
     """
@@ -39,7 +40,23 @@ def python_post(text="is cool"):
     difine a function can remplace text with is cool
     """
     text = text.replace('_', ' ')
-    return 'Python {}'.format(text)
+    return "Python" + str(text)
+
+
+@app.route('/number/<int:n>', strict_slashes=False)
+def npost(n):
+    """
+    return number
+    """
+    return f"{n} is a number"
+
+
+@app.route("/number_template/<int:n>", strict_slashes=False)
+def number_template(n):
+    '''
+    display an html page onlY if <n> is an integer
+    '''
+    return render_template("5-number.html", n=n)
 
 
 if __name__ == "__main__":
