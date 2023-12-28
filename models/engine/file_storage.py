@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """This module defines a class to manage file storage for hbnb clone"""
 import json
-from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -9,12 +8,18 @@ class FileStorage:
     __file_path = 'file.json'
     __objects = {}
 
-    def all(self, clas=None):
-        """ Returns the list of objects of one type of class
+    def all(self, cls=None):
+        """ returns the list of objects of one type of class if the class
+        name is specified otherwise all objects in the storage.
         """
-        if clas is not None:
-            return {k: v for k, v in self.__objects.items()
-                    if isinstance(v, clas)}
+        if cls:
+            if isinstance(cls, str):
+                cls = eval(cls)
+            return {
+                    key: value
+                    for key, value in self.__objects.items()
+                    if isinstance(value, cls)
+                }
         return self.__objects
 
     def new(self, obj):
@@ -29,14 +34,6 @@ class FileStorage:
             for key, val in temp.items():
                 temp[key] = val.to_dict()
             json.dump(temp, f)
-
-    def delete(self, objct=None):
-        """ Delete obj from __objects if it's inside
-        """
-        if objct is not None:
-            key = objct.__class__.__name__ + "." + objct.id
-            if key in self.__objects:
-                del self.__objects[key]
 
     def reload(self):
         """Loads storage dictionary from file"""
@@ -61,3 +58,14 @@ class FileStorage:
                     self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
+
+    def delete(self, obj=None):
+        '''Delete obj from __objects if it’s inside'''
+        if obj is not None:
+            ob_key = obj.__class__.__name__ + '.' + obj.id
+            if ob_key in FileStorage.__objects:
+                del FileStorage.__objects[ob_key]
+
+    def close(self):
+        """ close method """
+        self.reload()
